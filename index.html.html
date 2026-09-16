@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Hub – Role Information</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0f13;
+    --surface: #16181f;
+    --surface2: #1e2029;
+    --surface3: #252836;
+    --border: rgba(255,255,255,0.08);
+    --text: #e8eaf0;
+    --text-muted: rgba(232,234,240,0.55);
+    --accent: #5865F2;
+    --accent-soft: rgba(88,101,242,0.15);
+    --accent-glow: rgba(88,101,242,0.35);
+    --gold: #ffd166;
+    --gold-soft: rgba(255,209,102,0.12);
+    --teal: #43b5a0;
+    --teal-soft: rgba(67,181,160,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(14,15,19,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 58px;
+    flex-wrap: wrap;
+  }
+  .nav-logo {
+    font-weight: 800;
+    font-size: 17px;
+    color: var(--text);
+    margin-right: 16px;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--accent); }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 24px 80px;
+    text-align: center;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88,101,242,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 80%, rgba(67,181,160,0.10) 0%, transparent 60%),
+                var(--bg);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='30' cy='30' r='0.8' fill='rgba(255,255,255,0.04)'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(88,101,242,0.3);
+    border-radius: 100px;
+    padding: 4px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #a5acff;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.08;
+    background: linear-gradient(135deg, #fff 30%, #a5acff 70%, var(--teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.2px;
+  }
+  .hero-desc {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .hero-desc em {
+    display: block;
+    margin-top: 4px;
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(232,234,240,0.38);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 24px;
+  }
+  section + section {
+    border-top: 1px solid var(--border);
+  }
+  .section-header {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+  .section-header h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    color: var(--text);
+  }
+  .section-header p {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 560px;
+  }
+
+  /* ── STAFF CARDS ── */
+  .staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .staff-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .staff-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--accent));
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .staff-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    box-shadow: 0 0 0 1px var(--card-accent, var(--accent-glow)), 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .staff-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .staff-emoji {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--card-bg, var(--accent-soft));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .staff-title h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .staff-title span {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .info-block {
+    margin-top: 16px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+  }
+  .info-block-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--card-accent, var(--accent));
+    margin-bottom: 6px;
+    opacity: 0.85;
+  }
+  .info-block p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .info-block p em {
+    display: block;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(232,234,240,0.38);
+    margin-top: 3px;
+  }
+  .info-block ul {
+    list-style: none;
+    margin-top: 4px;
+  }
+  .info-block ul li {
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .info-block ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--card-accent, var(--accent));
+    font-weight: 700;
+  }
+  .info-block ul li em {
+    display: block;
+    font-size: 12.5px;
+    font-style: italic;
+    color: rgba(232,234,240,0.35);
+  }
+
+  /* ── COMMUNITY LEVELS ── */
+  .levels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .level-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .level-item:hover {
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+  }
+  .level-rank-indicator {
+    width: 60px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--level-bg, var(--surface2));
+    flex-shrink: 0;
+  }
+  .level-content {
+    padding: 18px 20px;
+    border-left: 3px solid var(--level-color, var(--accent));
+  }
+  .level-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .level-name span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+  .level-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .level-desc em {
+    font-style: italic;
+    color: rgba(232,234,240,0.38);
+    font-size: 13px;
+  }
+  .level-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .level-tag {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 2px 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── CONTACT GUIDE ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .contact-card-problem {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .contact-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .contact-card h4 em {
+    display: block;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .contact-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+  }
+  .contact-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border-radius: 100px;
+    font-size: 12.5px;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: #a5acff;
+    border: 1px solid rgba(88,101,242,0.25);
+    white-space: nowrap;
+  }
+
+  /* ── TICKETS ── */
+  .ticket-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .ticket-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .ticket-box h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ticket-box h3 em {
+    display: block;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .ticket-box p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-top: 10px;
+  }
+  .ticket-box p em {
+    display: block;
+    margin-top: 6px;
+    font-style: italic;
+    color: rgba(232,234,240,0.4);
+    font-size: 13.5px;
+  }
+  .rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .rule-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+  }
+  .rule-num {
+    background: var(--accent-soft);
+    color: #a5acff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .rule-item p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .rule-item p em {
+    display: block;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(232,234,240,0.38);
+    margin-top: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  footer strong { color: var(--text); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .staff-grid { grid-template-columns: 1fr; }
+    .ticket-box { grid-template-columns: 1fr; gap: 24px; padding: 24px 20px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-inner { height: auto; padding: 10px 0; gap: 4px; }
+    nav a { font-size: 13px; padding: 5px 9px; }
+    section { padding: 52px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">🌍 <span>Global Hub</span></div>
+    <a href="#staff">👑 Staff Roles</a>
+    <a href="#levels">🌍 Community Levels</a>
+    <a href="#contact">📩 Contact Guide</a>
+    <a href="#tickets">🎫 Tickets</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🌍 Official Server Guide</div>
+  <h1>GLOBAL HUB</h1>
+  <div class="hero-sub">Role Information &nbsp;/&nbsp; Rangok</div>
+  <p class="hero-desc">
+    This page describes all roles, their responsibilities, and the community level system of <strong>Global Hub</strong>. Whether you need help or want to understand the server's structure — you'll find everything here.
+    <em>Ez az oldal bemutatja a Global Hub összes rangját, feladatkörét és a közösségi szintrendszert. Minden fontos információt megtalálsz itt.</em>
+  </p>
+</div>
+
+<!-- STAFF ROLES -->
+<section id="staff">
+  <div class="section-header">
+    <span class="section-label">👑 Staff Team</span>
+    <h2>Staff Roles &amp; Responsibilities<br><span style="font-weight:500;font-size:0.72em;color:var(--text-muted)">Stáb rangok és feladatkörök</span></h2>
+    <p>Each staff member plays a unique role in keeping Global Hub safe, welcoming and well-organized.<br><em style="font-size:13px;color:rgba(232,234,240,0.38)">Minden stáb tagnak egyedi szerepe van abban, hogy a Global Hub biztonságos és jól szervezett maradjon.</em></p>
+  </div>
+
+  <div class="staff-grid">
+
+    <!-- OWNER -->
+    <div class="staff-card" style="--card-accent:#ffd166;--card-bg:rgba(255,209,102,0.12);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">👑</div>
+        <div class="staff-title">
+          <h3>Owner</h3>
+          <span>Tulajdonos</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>The founder and highest authority of Global Hub. Has full control over every aspect of the server.<em>A Global Hub alapítója és legmagasabb rangú tagja. Teljes irányítással bír a szerver minden felett.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Final decision-making authority on all matters<em>Végső döntési jog minden kérdésben</em></li>
+          <li>Server strategy, structure and direction<em>A szerver stratégiájának és irányának meghatározása</em></li>
+          <li>Managing the entire staff team<em>Az egész stáb csapat irányítása</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>Only for the most serious matters that cannot be resolved by other staff.<em>Csak a legsúlyosabb ügyekben, amelyeket más stáb nem tud megoldani.</em></p>
+      </div>
+    </div>
+
+    <!-- CO-OWNER -->
+    <div class="staff-card" style="--card-accent:#b9f2ff;--card-bg:rgba(185,242,255,0.08);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">💎</div>
+        <div class="staff-title">
+          <h3>Co-Owner</h3>
+          <span>Társtulajdonos</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>Co-leads the server alongside the Owner. Has near-equal authority and handles key operational decisions.<em>Az Owner mellett vezeti a szervert. Majdnem egyenlő jogkörrel bír és kulcsdöntéseket hoz.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Assisting the Owner in server management<em>Az Owner segítése a szerver vezetésében</em></li>
+          <li>Overseeing staff performance and operations<em>A stáb teljesítményének felügyelete</em></li>
+          <li>Handling major conflicts and escalations<em>Komoly konfliktusok és esetek kezelése</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>For issues requiring the highest level of authority when the Owner is unavailable.<em>Ha a legmagasabb szintű döntés szükséges és az Owner nem elérhető.</em></p>
+      </div>
+    </div>
+
+    <!-- ADMIN -->
+    <div class="staff-card" style="--card-accent:#f8a84b;--card-bg:rgba(248,168,75,0.10);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">🏆</div>
+        <div class="staff-title">
+          <h3>Administrator</h3>
+          <span>Adminisztrátor</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>Senior staff responsible for the day-to-day management of the server and the moderation team.<em>Vezető stáb tag, aki a napi szervereléségért és a moderációs csapatért felel.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Managing moderators and supporting their work<em>Moderátorok irányítása és munkájuk támogatása</em></li>
+          <li>Handling serious rule violations and bans<em>Súlyos szabályszegések és banok kezelése</em></li>
+          <li>Implementing server improvements<em>Szerver fejlesztések megvalósítása</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>For serious rule violations, appeals, or issues beyond moderator authority.<em>Súlyos szabályszegések, fellebbezések, vagy moderátori hatáskörön túli ügyek esetén.</em></p>
+      </div>
+    </div>
+
+    <!-- HEAD MOD -->
+    <div class="staff-card" style="--card-accent:#5865F2;--card-bg:rgba(88,101,242,0.12);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">🛡️</div>
+        <div class="staff-title">
+          <h3>Head Moderator</h3>
+          <span>Főmoderátor</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>The leader of the moderation team. Coordinates and supervises all moderators to ensure consistent rule enforcement.<em>A moderációs csapat vezetője. Koordinálja és felügyeli az összes moderátort a következetes szabályérvényesítés érdekében.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Leading and training the moderator team<em>A moderátor csapat vezetése és képzése</em></li>
+          <li>Reviewing moderation actions and decisions<em>Moderációs döntések felülvizsgálata</em></li>
+          <li>Escalating critical issues to Admins<em>Kritikus ügyek továbbítása az Adminoknak</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>If you have a complaint about a moderator or a serious moderation-related issue.<em>Ha panaszod van egy moderátorral kapcsolatban, vagy súlyos moderációs problémád van.</em></p>
+      </div>
+    </div>
+
+    <!-- MOD -->
+    <div class="staff-card" style="--card-accent:#43b5a0;--card-bg:rgba(67,181,160,0.10);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">🔨</div>
+        <div class="staff-title">
+          <h3>Moderator</h3>
+          <span>Moderátor</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>Core members of the moderation team who actively keep the server safe and rule-compliant.<em>A moderációs csapat alaptagjai, akik aktívan gondoskodnak a szerver biztonságáról és szabályok betartásáról.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Enforcing server rules and issuing warnings/mutes<em>Szerverszabályok érvényesítése, figyelmeztetések és némítások kiadása</em></li>
+          <li>Monitoring channels for toxic or rule-breaking behavior<em>Csatornák figyelése káros vagy szabálysértő viselkedés esetén</em></li>
+          <li>Responding to reports from members<em>Tagok bejelentéseire való reagálás</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>If you spot rule violations, spam, harassment or other moderation issues in the server.<em>Ha szabályszegést, spamet, zaklatást vagy más moderációs problémát észlelsz.</em></p>
+      </div>
+    </div>
+
+    <!-- TRIAL MOD -->
+    <div class="staff-card" style="--card-accent:#b0b8c1;--card-bg:rgba(176,184,193,0.08);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">🧹</div>
+        <div class="staff-title">
+          <h3>Trial Moderator</h3>
+          <span>Próba moderátor</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>A moderator in training. They are being evaluated before receiving full moderator status.<em>Próbaidőn lévő moderátor. Értékelés alatt áll, mielőtt teljes moderátori státuszt kapna.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Assisting regular moderators in their tasks<em>Segítség nyújtása a moderátoroknak feladataikban</em></li>
+          <li>Learning server rules and moderation practices<em>Szerverszabályok és moderációs gyakorlatok elsajátítása</em></li>
+          <li>Handling basic moderation under supervision<em>Alapvető moderáció elvégzése felügyelet alatt</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>For minor issues. For serious matters, prefer a full Moderator or higher.<em>Kisebb ügyekben. Komoly problémák esetén fordulj inkább teljes Moderátorhoz vagy magasabb rangú stábhoz.</em></p>
+      </div>
+    </div>
+
+    <!-- COMMUNITY MANAGER -->
+    <div class="staff-card" style="--card-accent:#e879f9;--card-bg:rgba(232,121,249,0.10);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">🤝</div>
+        <div class="staff-title">
+          <h3>Community Manager</h3>
+          <span>Közösségi menedzser</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>Focused on growing, engaging, and nurturing the Global Hub community. Bridges the gap between staff and members.<em>A Global Hub közösség fejlesztésére, bevonására és gondozására összpontosít. Hidat képez a stáb és a tagok között.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Organizing events and community activities<em>Események és közösségi tevékenységek szervezése</em></li>
+          <li>Gathering feedback and improving member experience<em>Visszajelzések gyűjtése és a tagok élményének javítása</em></li>
+          <li>Welcoming new members and fostering community spirit<em>Új tagok köszöntése és a közösségi szellem ápolása</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>For event ideas, community suggestions, or if you want to get more involved.<em>Eseményötletekkel, közösségi javaslatokkal, vagy ha szeretnél aktívabban részt venni.</em></p>
+      </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="staff-card" style="--card-accent:#34d399;--card-bg:rgba(52,211,153,0.10);">
+      <div class="staff-card-header">
+        <div class="staff-emoji">🛠️</div>
+        <div class="staff-title">
+          <h3>Support Team</h3>
+          <span>Segítőcsapat</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">What does this role mean? / Mit jelent?</div>
+        <p>Dedicated helpers who assist members with questions, issues and onboarding.<em>Elkötelezett segítők, akik a tagokat kérdéseikben, problémáikban és beilleszkedésükben támogatják.</em></p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">Main responsibilities / Fő feladatok</div>
+        <ul>
+          <li>Answering member questions and providing guidance<em>Tagok kérdéseinek megválaszolása és útmutatás nyújtása</em></li>
+          <li>Handling support tickets<em>Támogatási ticketek kezelése</em></li>
+          <li>Helping new members navigate the server<em>Új tagoknak segítség a szerveren való eligazodásban</em></li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">When to contact? / Mikor keresd?</div>
+        <p>For general questions, help with server features, or if you need guidance as a new member.<em>Általános kérdésekkel, szerverfunkciókkal kapcsolatos segítségért, vagy ha új tagként eligazodásra van szükséged.</em></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMMUNITY LEVELS -->
+<section id="levels">
+  <div class="section-header">
+    <span class="section-label">🌍 Community Levels</span>
+    <h2>Community Level Progression<br><span style="font-weight:500;font-size:0.72em;color:var(--text-muted)">Közösségi szintek</span></h2>
+    <p>Levels are earned through active participation. The more you contribute, the higher you climb.<br><em style="font-size:13px;color:rgba(232,234,240,0.38)">A szinteket aktív részvétellel lehet szerezni. Minél többet adsz a közösséghez, annál magasabbra kerülsz.</em></p>
+  </div>
+
+  <div class="levels-list">
+
+    <div class="level-item" style="--level-color:#ffd166;--level-bg:rgba(255,209,102,0.10);">
+      <div class="level-rank-indicator">🌎</div>
+      <div class="level-content">
+        <div class="level-name">Global Legend &nbsp;<span>/ Globális legenda</span></div>
+        <div class="level-desc">The highest community rank. A legendary figure of Global Hub who has contributed enormously to the community over a long time.<em>A legmagasabb közösségi rang. A Global Hub legendás alakja, aki hosszú időn át óriási mértékben járult hozzá a közösséghez.</em></div>
+        <div class="level-tags"><span class="level-tag">Highest rank</span><span class="level-tag">Long-term elite</span><span class="level-tag">Community icon</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#a5acff;--level-bg:rgba(165,172,255,0.10);">
+      <div class="level-rank-indicator">💫</div>
+      <div class="level-content">
+        <div class="level-name">Global Elite &nbsp;<span>/ Globális elit</span></div>
+        <div class="level-desc">Top-tier members who are consistently very active and highly respected within the community.<em>Kiemelkedő tagok, akik következetesen nagyon aktívak és nagy megbecsülésnek örvendenek a közösségben.</em></div>
+        <div class="level-tags"><span class="level-tag">Very high activity</span><span class="level-tag">Community pillar</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#fbbf24;--level-bg:rgba(251,191,36,0.08);">
+      <div class="level-rank-indicator">⭐</div>
+      <div class="level-content">
+        <div class="level-name">Pioneer &nbsp;<span>/ Úttörő</span></div>
+        <div class="level-desc">Early and dedicated contributors who helped shape the server's culture and direction from early on.<em>Korai és elkötelezett közreműködők, akik már korán segítettek alakítani a szerver kultúráját és irányát.</em></div>
+        <div class="level-tags"><span class="level-tag">High activity</span><span class="level-tag">Culture builder</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#34d399;--level-bg:rgba(52,211,153,0.08);">
+      <div class="level-rank-indicator">🧭</div>
+      <div class="level-content">
+        <div class="level-name">Pathfinder &nbsp;<span>/ Útkereső</span></div>
+        <div class="level-desc">Experienced members who know their way around and actively help others navigate the community.<em>Tapasztalt tagok, akik jól ismerik a szervert és aktívan segítenek másoknak eligazodni.</em></div>
+        <div class="level-tags"><span class="level-tag">Experienced</span><span class="level-tag">Helpful</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#60a5fa;--level-bg:rgba(96,165,250,0.08);">
+      <div class="level-rank-indicator">🌐</div>
+      <div class="level-content">
+        <div class="level-name">Globetrotter &nbsp;<span>/ Világutazó</span></div>
+        <div class="level-desc">Well-traveled members of the community — active across many channels and discussions.<em>Jól bejárt közösségi tagok — aktívak sok csatornán és beszélgetésben.</em></div>
+        <div class="level-tags"><span class="level-tag">Consistent activity</span><span class="level-tag">Multi-channel</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#f97316;--level-bg:rgba(249,115,22,0.08);">
+      <div class="level-rank-indicator">🏕️</div>
+      <div class="level-content">
+        <div class="level-name">Adventurer &nbsp;<span>/ Kalandor</span></div>
+        <div class="level-desc">Regular members who actively engage and participate in the community's daily life.<em>Rendszeres tagok, akik aktívan részt vesznek a közösség mindennapi életében.</em></div>
+        <div class="level-tags"><span class="level-tag">Regular</span><span class="level-tag">Active participant</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#818cf8;--level-bg:rgba(129,140,248,0.08);">
+      <div class="level-rank-indicator">✈️</div>
+      <div class="level-content">
+        <div class="level-name">Voyager &nbsp;<span>/ Világjáró</span></div>
+        <div class="level-desc">Members who are on a journey of discovery within the community — growing their presence and connections.<em>Tagok, akik felfedező úton járnak a közösségben — növelik jelenlétüket és kapcsolataikat.</em></div>
+        <div class="level-tags"><span class="level-tag">Growing</span><span class="level-tag">Engaged</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#a78bfa;--level-bg:rgba(167,139,250,0.08);">
+      <div class="level-rank-indicator">🧳</div>
+      <div class="level-content">
+        <div class="level-name">Traveler &nbsp;<span>/ Utazó</span></div>
+        <div class="level-desc">Members who have found their footing and are starting to be a recognizable part of the community.<em>Tagok, akik megtalálták helyüket és kezdik megismerni őket a közösségben.</em></div>
+        <div class="level-tags"><span class="level-tag">Settling in</span><span class="level-tag">Recognized</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#6ee7b7;--level-bg:rgba(110,231,183,0.07);">
+      <div class="level-rank-indicator">🧭</div>
+      <div class="level-content">
+        <div class="level-name">Explorer &nbsp;<span>/ Felfedező</span></div>
+        <div class="level-desc">Members who are starting to explore the server and engage more regularly with others.<em>Tagok, akik kezdik felfedezni a szervert és rendszeresebben lépnek kapcsolatba másokkal.</em></div>
+        <div class="level-tags"><span class="level-tag">Early active</span><span class="level-tag">Learning</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#4ade80;--level-bg:rgba(74,222,128,0.07);">
+      <div class="level-rank-indicator">🌱</div>
+      <div class="level-content">
+        <div class="level-name">Newcomer &nbsp;<span>/ Újonc</span></div>
+        <div class="level-desc">Freshly joined members who just started their journey in Global Hub.<em>Frissen csatlakozott tagok, akik épp most kezdik el a kalandjukat a Global Hubban.</em></div>
+        <div class="level-tags"><span class="level-tag">New member</span><span class="level-tag">Getting started</span></div>
+      </div>
+    </div>
+
+    <div class="level-item" style="--level-color:#94a3b8;--level-bg:rgba(148,163,184,0.07);">
+      <div class="level-rank-indicator">👤</div>
+      <div class="level-content">
+        <div class="level-name">Guest &nbsp;<span>/ Vendég</span></div>
+        <div class="level-desc">Unverified visitors with limited access. Complete verification to become a Newcomer and unlock the full server.<em>Nem ellenőrzött látogatók korlátozott hozzáféréssel. Végezd el az ellenőrzést, hogy Újonc legyél és megnyisd az egész szervert.</em></div>
+        <div class="level-tags"><span class="level-tag">Unverified</span><span class="level-tag">Limited access</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT GUIDE -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-label">📩 Contact Guide</span>
+    <h2>Who Should I Contact?<br><span style="font-weight:500;font-size:0.72em;color:var(--text-muted)">Kit kell megkeresni?</span></h2>
+    <p>Use this guide to find the right person for your issue. Always try the lowest appropriate rank first.<br><em style="font-size:13px;color:rgba(232,234,240,0.38)">Ezt az útmutatót használd a megfelelő személy megtalálásához. Mindig a legalacsonyabb megfelelő rangot próbáld először.</em></p>
+  </div>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <div class="contact-card-problem">🆘 Problem type / Probléma típusa</div>
+      <h4>Rule violations, spam, harassment<em>Szabályszegés, spam, zaklatás</em></h4>
+      <div class="contact-roles">
+        <span class="contact-role-badge">🔨 Moderator</span>
+        <span class="contact-role-badge">🧹 Trial Mod</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-problem">⚠️ Problem type / Probléma típusa</div>
+      <h4>Serious violations, ban appeals<em>Súlyos szabályszegés, ban fellebbezés</em></h4>
+      <div class="contact-roles">
+        <span class="contact-role-badge">🛡️ Head Mod</span>
+        <span class="contact-role-badge">🏆 Admin</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-problem">❓ Problem type / Probléma típusa</div>
+      <h4>General questions, server help<em>Általános kérdések, szerver segítség</em></h4>
+      <div class="contact-roles">
+        <span class="contact-role-badge">🛠️ Support Team</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-problem">🎉 Problem type / Probléma típusa</div>
+      <h4>Events, suggestions, community ideas<em>Események, javaslatok, közösségi ötletek</em></h4>
+      <div class="contact-roles">
+        <span class="contact-role-badge">🤝 Community Manager</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-problem">🛡️ Problem type / Probléma típusa</div>
+      <h4>Complaint about a moderator<em>Panasz egy moderátorral szemben</em></h4>
+      <div class="contact-roles">
+        <span class="contact-role-badge">🛡️ Head Mod</span>
+        <span class="contact-role-badge">🏆 Admin</span>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-problem">🔴 Problem type / Probléma típusa</div>
+      <h4>Critical server-level issues<em>Kritikus, szerver szintű problémák</em></h4>
+      <div class="contact-roles">
+        <span class="contact-role-badge">💎 Co-Owner</span>
+        <span class="contact-role-badge">👑 Owner</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets">
+  <div class="section-header">
+    <span class="section-label">🎫 Support Tickets</span>
+    <h2>How to Get Support<br><span style="font-weight:500;font-size:0.72em;color:var(--text-muted)">Hogyan kérj segítséget</span></h2>
+  </div>
+
+  <div class="ticket-box">
+    <div>
+      <div class="ticket-icon">🎫</div>
+      <h3>Use the Ticket System<em>Használd a ticket rendszert</em></h3>
+      <p>All support requests should be submitted through the official ticket system in the server. This ensures your issue is tracked and handled by the right team member as quickly as possible.
+        <em>Minden segítségkérést a szerveren belüli hivatalos ticket rendszeren keresztül kell benyújtani. Ez biztosítja, hogy problémádat nyomon kövessük és a megfelelő csapattag a lehető leggyorsabban kezelje.</em>
+      </p>
+      <p style="margin-top:16px;">Tickets are private between you and the staff team. You can describe your issue in detail without it being visible to other members.
+        <em>A ticketek privátak közted és a stáb csapat között. Részletesen leírhatod a problémádat anélkül, hogy más tagok látnák.</em>
+      </p>
+    </div>
+    <div>
+      <div class="rules-list">
+        <div class="rule-item">
+          <div class="rule-num">1</div>
+          <p>Open one ticket per issue only. Duplicate tickets slow things down.
+            <em>Problémánként csak egy ticketet nyiss. A duplikált ticketek lassítják a folyamatot.</em>
+          </p>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">2</div>
+          <p>Do <strong>not</strong> DM multiple staff members about the same issue. Use tickets instead.
+            <em>Ne DM-elj több stáb tagot ugyanazzal a problémával. Helyette használj ticketet.</em>
+          </p>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">3</div>
+          <p>Be patient and respectful. Staff members are volunteers helping in their free time.
+            <em>Légy türelmes és tisztelettudó. A stáb tagok önkéntesek, akik szabadidejükben segítenek.</em>
+          </p>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">4</div>
+          <p>Provide as much detail as possible — screenshots, usernames, timestamps all help.
+            <em>Adj meg minél több részletet — képernyőképek, felhasználónevek és időpontok mind segítenek.</em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🌍 <strong>Global Hub</strong> &nbsp;·&nbsp; Role Information &amp; Server Guide &nbsp;·&nbsp; Official Community Portal</p>
+  <p style="margin-top:6px;font-size:12px;">Rangok és információk / Roles &amp; Information</p>
+</footer>
+
+</body>
+</html>
